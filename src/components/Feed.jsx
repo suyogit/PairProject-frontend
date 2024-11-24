@@ -17,9 +17,9 @@ const Feed = () => {
       const res = await axios.get(BASE_URL + "/feed", {
         withCredentials: true,
       });
-      console.log("res", res);
-      console.log("res?.data", res?.data);
-      console.log("res?.data?.data", res?.data?.data);
+      // console.log("res", res);
+      // console.log("res?.data", res?.data);
+      // console.log("res?.data?.data", res?.data?.data);
       dispatch(addFeed(res?.data?.data));
     } catch (err) {
       console.log(err);
@@ -28,6 +28,12 @@ const Feed = () => {
   useEffect(() => {
     getFeed();
   }, []);
+  if (feed === null)
+    return <h1 className="flex justify-center my-10">Loading...</h1>;
+  if (!feed) return;
+  if (feed.length <= 0)
+    return <h1 className="flex justify-center my-10">No new users founds!</h1>;
+
   return (
     feed && (
       <div className="flex justify-center my-10">
