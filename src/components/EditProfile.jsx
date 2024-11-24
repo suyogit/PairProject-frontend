@@ -9,9 +9,9 @@ const EditProfile = ({ user }) => {
   const [firstName, setFirstName] = useState(user.firstName);
   const [lastName, setLastName] = useState(user.lastName);
   const [photoUrl, setPhotoUrl] = useState(user.photoUrl);
-  const [age, setAge] = useState(user.age);
-  const [gender, setGender] = useState(user.gender);
-  const [about, setAbout] = useState(user.about);
+  const [age, setAge] = useState(user.age || "");
+  const [gender, setGender] = useState(user.gender || "");
+  const [about, setAbout] = useState(user.about || "");
   const [error, setError] = useState("");
   const dispatch = useDispatch();
   const [showToast, setShowToast] = useState(false);
@@ -126,11 +126,10 @@ const EditProfile = ({ user }) => {
           </div>
         </div>
         <div className="m-6 p-6">
-        <UserCard
-          user={{ firstName, lastName, photoUrl, age, gender, about }}
-        />
+          <UserCard
+            user={{ firstName, lastName, photoUrl, age, gender, about }}
+          />
         </div>
-      
       </div>
       {showToast && (
         <div className="toast toast-top toast-end">
