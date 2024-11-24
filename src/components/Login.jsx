@@ -57,7 +57,7 @@ const Login = () => {
               </div>
 
               <input
-                type="text"
+                type="password"
                 value={password}
                 className="input input-bordered w-full max-w-xs"
                 onChange={(e) => {
