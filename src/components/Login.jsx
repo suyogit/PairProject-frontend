@@ -26,11 +26,11 @@ const Login = () => {
         { withCredentials: true }
       );
       dispatch(addUser(res.data));
-      console.log(res.data);
+      //console.log(res.data);
       return navigate("/");
     } catch (err) {
-      console.log(err.response);
-      console.log("Error:", err.response?.data || "No response from server");
+      //console.log(err.response);
+     // console.log("Error:", err.response?.data || "No response from server");
       setError(err?.response?.data || "Something went wrong");
     }
   }

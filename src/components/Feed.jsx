@@ -22,7 +22,7 @@ const Feed = () => {
       // console.log("res?.data?.data", res?.data?.data);
       dispatch(addFeed(res?.data?.data));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
   useEffect(() => {

@@ -22,11 +22,11 @@ const Body = () => {
       });
       dispatch(addUser(res.data));
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       if (err.status === 401) {
         navigate("/login");
       }
-      console.error(err.response.data);
+      //console.error(err.response.data);
     }
   };
   useEffect(() => {
