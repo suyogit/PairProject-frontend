@@ -27,16 +27,21 @@ const Connections = () => {
     fetchConnections();
   }, []);
 
-  if (loading) return <h1>Loading...</h1>;
-  if (error) return <h1>Failed to load connections</h1>;
-  if (connections?.length === 0) return <h1>No Connections Found</h1>;
+  if (loading) return <h1 className="flex justify-center my-10">Loading...</h1>;
+  if (error)
+    return (
+      <h1 className="flex justify-center my-10">Failed to load connections</h1>
+    );
+  if (connections?.length === 0)
+    return <h1 className="flex justify-center my-10">No Connections Found</h1>;
 
   return (
     <div className="text-center my-10">
       <h1 className="text-bold text-white text-3xl">Connections</h1>
 
       {connections.map((connection) => {
-        const {_id, firstName, lastName, photoUrl, age, gender, about } = connection;
+        const { _id, firstName, lastName, photoUrl, age, gender, about } =
+          connection;
 
         return (
           <div

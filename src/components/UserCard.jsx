@@ -16,7 +16,7 @@ const UserCard = ({ user }) => {
       );
       dispatch(removeFeed(userId));
     } catch (err) {
-     // console.log(err.message);
+      // console.log(err.message);
     }
   };
 
@@ -29,18 +29,18 @@ const UserCard = ({ user }) => {
         <h2 className="card-title">{firstName + " " + lastName}</h2>
         {age && gender && <p>{age + ", " + gender}</p>}
         <p>{about}</p>
-        <div className="card-actions justify-center my-4">
+        <div className="card-actions justify-between my-4">
           <button
-            className="btn btn-primary"
+            className="btn btn-primary mr-3"
             onClick={() => handleSendRequest("ignored", _id)}
           >
-            Ignore
+            Reject
           </button>
           <button
-            className="btn btn-secondary"
+            className="btn btn-secondary ml-3"
             onClick={() => handleSendRequest("interested", _id)}
           >
-            Interested
+            Connect
           </button>
         </div>
       </div>
