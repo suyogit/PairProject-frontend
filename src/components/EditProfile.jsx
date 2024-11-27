@@ -50,17 +50,23 @@ const EditProfile = ({ user }) => {
 
   const saveProfile = async () => {
     setError("");
-    setLoading(true);
 
     try {
-      const imgUrl = await uploadFile("image");
+      let imgUrl = user.photoUrl;
+
+      if (img) {
+        setLoading(true);
+        imgUrl = await uploadFile("image");
+      } else {
+        setLoading(false);
+      }
 
       const res = await axios.patch(
         BASE_URL + "/profile/edit",
         {
           firstName,
           lastName,
-          photoUrl: imgUrl,
+          ...(imgUrl !== user.photoUrl && { photoUrl: imgUrl }),
           age,
           gender,
           about,
@@ -128,7 +134,7 @@ const EditProfile = ({ user }) => {
                     onChange={handleFileChange}
                   />
                 </label>
-                <div className="card-actions justify-center m-2"> 
+                <div className="card-actions justify-center m-2">
                   {loading && (
                     <ThreeDots
                       height="60"
