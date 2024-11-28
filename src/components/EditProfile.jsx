@@ -5,6 +5,7 @@ import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { ThreeDots } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 
 const EditProfile = ({ user }) => {
   const [firstName, setFirstName] = useState(user.firstName);
@@ -19,6 +20,8 @@ const EditProfile = ({ user }) => {
   const [img, setImg] = useState(null);
   const [loading, setLoading] = useState(false);
   const [previewUrl, setPreviewUrl] = useState(user.photoUrl || "");
+  const navigate=useNavigate()
+
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -47,6 +50,9 @@ const EditProfile = ({ user }) => {
       // console.error(error);
     }
   };
+  const goback=()=>{
+    return navigate("/")
+  }
 
   const saveProfile = async () => {
     setError("");
@@ -164,12 +170,49 @@ const EditProfile = ({ user }) => {
                   <div className="label">
                     <span className="label-text">Gender:</span>
                   </div>
-                  <input
+                  {/* <input
                     type="text"
                     value={gender}
                     className="input input-bordered w-full max-w-xs"
                     onChange={(e) => setGender(e.target.value)}
-                  />
+                  /> */}
+                  <div className="flex items-center space-x-4">
+                    <label className="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="male"
+                        className="radio"
+                        checked={gender === "male"}
+                        onChange={(e) => setGender(e.target.value)}
+                      />
+                      <span>Male</span>
+                    </label>
+
+                    <label className="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="female"
+                        className="radio"
+                        checked={gender === "female"}
+                        onChange={(e) => setGender(e.target.value)}
+                      />
+                      <span>Female</span>
+                    </label>
+
+                    <label className="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="others"
+                        className="radio"
+                        checked={gender === "others"}
+                        onChange={(e) => setGender(e.target.value)}
+                      />
+                      <span>Other</span>
+                    </label>
+                  </div>
                 </label>
                 <label className="form-control w-full max-w-xs my-2">
                   <div className="label">
@@ -188,11 +231,15 @@ const EditProfile = ({ user }) => {
                 <button className="btn btn-primary" onClick={saveProfile}>
                   Save Profile
                 </button>
+                <button className="btn btn-primary" onClick={goback}>
+                  Go to Home
+                </button>
               </div>
             </div>
           </div>
         </div>
-        <div className="m-6 p-6">
+        <div className="m-6 p-6 flex flex-col ">
+         <i><h1>Your Profile</h1></i> 
           <UserCard
             user={{
               firstName,
