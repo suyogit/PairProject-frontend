@@ -48,7 +48,7 @@ const Requests = () => {
         return (
           <div
             key={_id}
-            className=" flex justify-between items-center m-4 p-4 rounded-lg bg-base-300 w-2/3 mx-auto"
+            className=" flex flex-col md:flex-row  justify-between items-center m-4 p-4 rounded-lg bg-base-300 w-2/3 mx-auto "
           >
             <div>
               <img
@@ -66,13 +66,13 @@ const Requests = () => {
             </div>
             <div>
               <button
-                className="btn btn-primary mx-2"
+                className="btn btn-primary m-2"
                 onClick={() => reviewRequest("rejected", request._id)}
               >
                 Reject
               </button>
               <button
-                className="btn btn-secondary mx-2"
+                className="btn btn-secondary m-2"
                 onClick={() => reviewRequest("accepted", request._id)}
               >
                 Accept

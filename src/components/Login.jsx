@@ -30,7 +30,7 @@ const Login = () => {
       return navigate("/");
     } catch (err) {
       //console.log(err.response);
-     // console.log("Error:", err.response?.data || "No response from server");
+      // console.log("Error:", err.response?.data || "No response from server");
       setError(err?.response?.data || "Something went wrong");
     }
   }
@@ -49,7 +49,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center my-10">
+    <div className="flex justify-center my-10 pb-20">
       <div className="card  bg-base-300 w-96 shadow-xl">
         <div className="card-body">
           <h2 className="card-title justify-center">
@@ -122,7 +122,10 @@ const Login = () => {
 
           <p
             className="m-auto cursor-pointer py-2"
-            onClick={() => setIsLoginForm((prevState) => !prevState)}
+            onClick={() => {
+              setError("")
+              return setIsLoginForm((prevState) => !prevState);
+            }}
           >
             {isLoginForm
               ? "New Here? Signup "
