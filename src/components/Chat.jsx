@@ -68,13 +68,20 @@ const Chat = () => {
   //   };
 
   useEffect(() => {
+    if (!userId) {
+      return;
+    }
     const socket = createSocketConnection();
-    socket.emit("joinChat", { userId, targetUserId });
+    socket.emit("joinChat", {
+      firstName: user?.firstName,
+      userId,
+      targetUserId,
+    });
 
     return () => {
       socket.disconnect();
     };
-  }, []);
+  }, [userId, targetUserId]);
 
   return (
     <div className="w-3/4 mx-auto border border-gray-600 m-5 h-[70vh] flex flex-col">
